@@ -1,5 +1,3 @@
-// See https://github.com/dialogflow/dialogflow-fulfillment-nodejs
-// for Dialogflow fulfillment library docs, samples, and to report issues
 'use strict'; 
 
 const functions = require('firebase-functions');
@@ -7,7 +5,7 @@ const admin = require('firebase-admin');
 const {WebhookClient} = require('dialogflow-fulfillment');
 const {Card, Suggestion} = require('dialogflow-fulfillment');
  
-process.env.DEBUG = 'dialogflow:debug'; // enables lib debugging statements
+process.env.DEBUG = 'dialogflow:debug'; 
 admin.initializeApp(functions.config().firebase);
   
   //const firestore = new Firestore();
@@ -42,10 +40,8 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
                                                                 
  
   function readFromDb (agent) {
-    // Get the database collection 'dialogflow' and document 'agent'
+    
     const dialogflowAgentDoc = bd.collection('doc_bot').doc('doc_bot');
-
-    // Get the value of 'entry' in the document and send it to the user
     return dialogflowAgentDoc.get()
       .then(doc => {
         if (!doc.exists) {
